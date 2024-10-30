@@ -8,36 +8,15 @@ code-forensics
 ## Credits
 This project is based on the excellent work of **Adam Tornhill** and his command line tool [Code Maat](https://github.com/adamtornhill/code-maat). The majority of the analysis that **code-forensics** performs are actually described in Adam's book [Your Code as a Crime Scene](https://pragprog.com/book/atcrime/your-code-as-a-crime-scene).
 
-## Release news
-### Version 3 release (January 2021)
-This release upgrades a number of packages and drops support for old Node versions in order to start migrating the code to ES6.
+## Build
 
-### Version 2 release (September 2018)
-This release introduces new metrics trends in the system evolution analysis (number of commits, number of authors). This change requires a different logic to generate and render the revisions trend diagram, which breaks compatibility with respect to older versions.
-
-See the [CHANGELOG](./CHANGELOG.md) for release details.
-
-## Pre-requisites
-* **Node.js** - **From release 1.0.0 code-forensics requires Nodejs 4 or later**. If you can't upgrade I suggest you use an earlier version of this package.
-* **npm v3** - code-forensics requires a flat install of its dependencies into the node_modules folder in order to visualise d3 diagrams.
-* **code-maat**: code-forensics is distributed with a pre-built (a _.jar_ package) version of code-maat that requires **Java 8**. Alternatively you can use **Docker**, provided you can [supply a docker image of code-maat](https://github.com/smontanari/code-forensics/wiki/Advanced-setup#code-maat-options). See the [Code Maat](https://github.com/adamtornhill/code-maat) repository for details on how to run the tool with Java or Docker.
-
-## Install
-
-`$ npm install code-forensics`
-
-**Note 1**: **code-forensics** is distributed as a nodejs module that runs on top of [gulp version 4](https://github.com/gulpjs/gulp). Be aware that if you have gulp already installed as a global module and it's not the required version you will have to explicitly execute the gulp command that comes with the installation of **code-forensics**.
-
-**Note 2**: I would advise against installing **code-forensics** as a global module, as it requires certain packages to be at the top level of the node_modules folder in order to correctly run its internal http server and serve the pages to the browser for the visualisation part of the analysis. If **code-forensics** is installed as a global module such packages may conflict with already existing ones and that could cause all sorts of unpredictable issues.
+Run `$ npm install` to retrieve all required node modules
 
 ## VCS support
 At the moment **code-forensics** can work with **git** and **svn** based repositories, however other version control systems could be supported in the future, given the ability of Code Maat to parse log data from the most popular ones.
 
 ## Programming languages
 Most of **code-forensics** analyses are agnostic of the programming language used in the repository, however some tasks can report metrics on the language complexity and currently only *Ruby* and *JavaScript* are supported. Complexity analysis for other languages can be added, possibly with your help.
-
-## Compatibility
-This software is not meant to be a commercial tool, hence support for various operating systems and different browsers is not a priority. I've tested **code-forensics** on a Mac OS X with different versions of Node.js, and primarily with Chrome as a browser. While I expect (and I'm willing to support) **code-forensics** to work in linux/unix environments, I can't guarantee it would on a Windows OS.
 
 ## Usage
 This is only a short description on how to get started with **code-forensics**.
@@ -115,7 +94,7 @@ The results of each analysis can be displayed in the form of D3 diagrams.
 
 Start up the local http server:
 ```bash
-$ gulp webserver
+$ node scripts/webserver.js
 ```
 
 Open the browser at `http://localhost:3000/index.html` to see a list of the available reports.
@@ -163,16 +142,8 @@ The results can then be displayed in a word cloud diagram at the url given above
   </tbody>
 </table>
 
-## Upcoming features
-In time I'm also planning to add the following analyses in future versions of code-forensics:
-- code fragmentation analysis: to be used together with the current developer effort analysis to see if the fragmentation in your files is healthy or not.
-- code age analysis: another perspective to find out how old and stable the different parts of your codebase actually are.
-
-Of course, if you think there could be any new analysis or feature that could be useful in this tool, you're welcome to open a new issue and even to help directly with the code!
 
 ## License
-Copyright &copy; 2016-2021 Silvio Montanari
-
 **code-forensics** is free software; you can redistribute it and/or modify it under the terms of the [GNU General Public License v3.0 or any later version](http://www.gnu.org/licenses/gpl.html).
 
 ### Acknowledgements

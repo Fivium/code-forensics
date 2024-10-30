@@ -7,4 +7,5 @@ todo.txt
 *.tgz
 .vscode/
 output/
+tmp/
 gulpfile.js

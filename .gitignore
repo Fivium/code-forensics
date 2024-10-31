@@ -10,3 +10,4 @@ output/
 tmp/
 gulpfile.js
 /.idea/
+.env

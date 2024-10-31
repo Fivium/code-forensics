@@ -46,7 +46,7 @@ require('../code-forensics/lib/index').configure(
 ```
 The only required configuration value is the file system path to the root directory of the version control repository to analyse, e.g. C:/Users/myusername/my-spring-boot-project, however this example is not practical and I would recommend you learn about and configure other parameters to more effectively target the analyses you intend to run.
 
-The `rootPath` can be hardcoded directly into the gulpfile or passed from a .env file and called using `process.env.<ROOT_PATH>`
+The `rootPath` can be hardcoded directly into the gulpfile or passed from a .env file and called using `process.env.<ROOT_PATH>` where `ROOT_PATH` is one of your defined environment variable in your `.env` file.
 
 ### Running analyses
 Analyses are executed as a gulp task. Depending on how the gulp module is installed (as global or local) there are different ways to invoke the gulp command. Here, to simplify the examples, I will assume it is available on your command PATH. I will also assume you are running the required version (4) of gulp.

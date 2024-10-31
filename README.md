@@ -12,7 +12,8 @@ This project is based on the excellent work of **Adam Tornhill** and his command
 
 1. Run `$ npm install` to retrieve all required node modules
 2. Create your gulpfile.js file in the root directory as per [the minimal configuration settings](#minimal-configuration)
-3. (Optional) pull the latest git logs for your target repository
+3. (Optional) create .env file in root directory to store repository paths which can be referenced in your code-forensics configuration
+4. (Optional) pull the latest git logs for your target repository
 
 ## VCS support
 At the moment **code-forensics** can work with **git** and **svn** based repositories, however other version control systems could be supported in the future, given the ability of Code Maat to parse log data from the most popular ones.
@@ -33,7 +34,9 @@ The `gulpfile.js` must define the configuration options and parameters necessary
 
 A minimal configuration `gulpfile.js` would look like the following:
 ```javascript
-require('code-forensics').configure(
+require('dotenv').config(); //optional: for quickly switching between root paths
+
+require('../code-forensics/lib/index').configure(
   {
     repository: {
       rootPath: "<path-to-the-repo>",
@@ -42,6 +45,8 @@ require('code-forensics').configure(
 );
 ```
 The only required configuration value is the file system path to the root directory of the version control repository to analyse, e.g. C:/Users/myusername/my-spring-boot-project, however this example is not practical and I would recommend you learn about and configure other parameters to more effectively target the analyses you intend to run.
+
+The `rootPath` can be hardcoded directly into the gulpfile or passed from a .env file and called using `process.env.<ROOT_PATH>`
 
 ### Running analyses
 Analyses are executed as a gulp task. Depending on how the gulp module is installed (as global or local) there are different ways to invoke the gulp command. Here, to simplify the examples, I will assume it is available on your command PATH. I will also assume you are running the required version (4) of gulp.
